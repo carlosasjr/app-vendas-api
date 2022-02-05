@@ -24,7 +24,7 @@ class CompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'cnpj'  => 'required|exists:companies'
+            'company_id'  => 'required|exists:companies,id'
         ];
     }
 }

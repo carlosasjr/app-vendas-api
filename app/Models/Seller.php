@@ -6,10 +6,10 @@ use App\Traits\HasCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Device extends Model
+class Seller extends Model
 {
     use HasFactory;
     use HasCompany;
 
-    protected $fillable = ['company_id', 'name', 'block'];
+    protected $fillable = ['company_id', 'name', 'password', 'inative'];
 }

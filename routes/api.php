@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\{CompanyController, DeviceController};
+use App\Http\Controllers\Api\{CompanyController, DeviceController, SelllerController};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('companies', CompanyController::class);
 
 Route::post('devices', DeviceController::class);
+
+Route::get('sellers/all', [SelllerController::class, 'all']);

@@ -19,6 +19,11 @@ class Company extends Model
         return $this->hasMany(Device::class);
     }
 
+    public function sellers()
+    {
+        return $this->hasMany(Seller::class);
+    }
+
     public function scopeCnpj($query, string $cnpj)
     {
         return $query->where('cnpj', $cnpj);

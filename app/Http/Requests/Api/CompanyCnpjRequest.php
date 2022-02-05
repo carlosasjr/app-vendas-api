@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeviceRequest extends FormRequest
+class CompanyCnpjRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,7 @@ class DeviceRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_id'     => 'required|exists:companies,id',
-            'name'           => 'required|unique:devices'
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'name.unique' => "Dispositivo já cadastrado!"
+            'cnpj'  => 'required|exists:companies,cnpj'
         ];
     }
 }
