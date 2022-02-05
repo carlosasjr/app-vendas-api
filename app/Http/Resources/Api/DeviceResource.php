@@ -16,7 +16,8 @@ class DeviceResource extends JsonResource
     {
         return [
             'name'  => $this->name,
-            'block' => $this->block
+            'block' => $this->block,
+            'sync'  => $this->sync,
         ];
     }
 }

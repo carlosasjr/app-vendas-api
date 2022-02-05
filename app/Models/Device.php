@@ -11,5 +11,5 @@ class Device extends Model
     use HasFactory;
     use HasCompany;
 
-    protected $fillable = ['company_id', 'name', 'block'];
+    protected $fillable = ['company_id', 'name', 'sync', 'block'];
 }

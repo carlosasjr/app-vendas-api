@@ -17,6 +17,7 @@ class CreateDevicesTable extends Migration
             $table->id();
             $table->foreignId('company_id')->constrained();
             $table->string('name')->unique();
+            $table->dateTime('sync')->nullable();
             $table->boolean('block')->default(false);
             $table->timestamps();
         });
