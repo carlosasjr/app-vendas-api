@@ -16,6 +16,7 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained();
+            $table->uuid('uuid');
             $table->string('name');
             $table->string('fantasy')->nullable();
             $table->string('fj', 1)->nullable();
@@ -31,6 +32,7 @@ class CreateClientsTable extends Migration
             $table->string('cellphone')->nullable();
             $table->string('email')->nullable();
             $table->boolean('inative')->default(false);
+            $table->string('code_erp')->nullable();
             $table->timestamps();
         });
     }

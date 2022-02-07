@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\FilterDataSync;
+use App\Traits\FilterDataLastSync;
 use App\Traits\HasCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +11,7 @@ class Client extends Model
 {
     use HasFactory;
     use HasCompany;
-    use FilterDataSync;
+    use FilterDataLastSync;
 
     protected $fillable = [
         'company_id',
@@ -29,6 +29,7 @@ class Client extends Model
         'telephone',
         'cellphone',
         'email',
+        'code_erp',
         'inative'
     ];
 }

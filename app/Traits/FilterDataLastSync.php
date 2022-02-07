@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use DateTime;
 
-trait FilterDataSync
+trait FilterDataLastSync
 {
     public function scopeDataSync($query, ?string $dataSync = null)
     {

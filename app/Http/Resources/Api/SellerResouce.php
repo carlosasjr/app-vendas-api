@@ -16,6 +16,7 @@ class SellerResouce extends JsonResource
     {
         return [
             'id'         => $this->id,
+            'uuid'       => $this->uuid,
             'company_id' => $this->company_id,
             'name'       => $this->name,
             'password'   => $this->password,

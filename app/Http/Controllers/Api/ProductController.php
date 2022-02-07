@@ -4,17 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CompanyDeviceRequest;
-use App\Http\Requests\Api\CompanyRequest;
-use App\Http\Resources\Api\SellerResouce;
-use App\Services\SellerService;
+use App\Http\Resources\Api\ProductResource;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
 
-class SelllerController extends Controller
+class ProductController extends Controller
 {
-    public function __construct(private SellerService $repository)
+    public function __construct(private ProductService $repository)
     {
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -72,8 +70,8 @@ class SelllerController extends Controller
 
     public function all(CompanyDeviceRequest $request)
     {
-        $sellers = $this->repository->all($request);
+        $products = $this->repository->all($request);
 
-        return SellerResouce::collection($sellers);
+        return ProductResource::collection($products);
     }
 }

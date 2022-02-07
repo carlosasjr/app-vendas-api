@@ -4,12 +4,12 @@ namespace App\Services;
 
 use App\Http\Requests\Api\CompanyDeviceRequest;
 use App\Models\Device;
-use App\Models\Seller;
+use App\Models\Product;
 
-class SellerService
+class ProductService
 {
     public function __construct(
-        private Seller $repository,
+        private Product $repository,
         private Device $device
     ) {
     }
