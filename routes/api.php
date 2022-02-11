@@ -5,9 +5,12 @@ use App\Http\Controllers\Api\{
     DeviceController,
     SelllerController,
     ClientController,
-    ProductController
+    ConditionPaymentController,
+    ProductController,
+    FormPaymentController,
+    SaleController,
 };
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +34,20 @@ Route::get('sellers/all', [SelllerController::class, 'all']);
 Route::get('clients/all', [ClientController::class, 'all']);
 
 Route::get('products/all', [ProductController::class, 'all']);
+
+Route::get('form-payments/all', [FormPaymentController::class, 'all']);
+
+Route::get('condition-payments/all', [ConditionPaymentController::class, 'all']);
+
+Route::post('sales', [SaleController::class, 'store']);
+Route::get('sales/all-processed', [SaleController::class, 'allProcessed']);
+Route::get('sales/all-integrated', [SaleController::class, 'allIntegrated']);
+
+
+
+Route::get(
+    'ok',
+    function () {
+        return response()->json('OK', 200);
+    }
+);
