@@ -27,11 +27,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('companies', CompanyController::class);
 
-Route::post('devices', DeviceController::class);
+Route::post('devices', [DeviceController::class, 'store']);
+Route::put('devices', [DeviceController::class, 'update']);
 
 Route::get('sellers/all', [SelllerController::class, 'all']);
 
 Route::get('clients/all', [ClientController::class, 'all']);
+Route::post('clients/store', [ClientController::class, 'storeClients']);
 
 Route::get('products/all', [ProductController::class, 'all']);
 

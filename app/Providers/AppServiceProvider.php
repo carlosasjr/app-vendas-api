@@ -14,6 +14,7 @@ use App\Observers\DeviceObserver;
 use App\Observers\FormPaymentObserver;
 use App\Observers\ProductObserver;
 use App\Observers\SellerObserver;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,6 +36,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultstringLength(191);
+
         Device::observe(DeviceObserver::class);
         Client::observe(ClientObserver::class);
         Seller::observe(SellerObserver::class);
