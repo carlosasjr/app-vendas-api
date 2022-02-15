@@ -25,17 +25,12 @@ class ClientController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storeClients(CompanyCnpjRequest $request)
-    {
-        $clients = $this->repository->storeClients($request);
 
-        return ClientResource::collection($clients);
+    public function storeClients(Request $request)
+    {        
+        $this->repository->storeClients($request);
+
+        return response()->json('OK', 200);
     }
 
 

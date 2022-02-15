@@ -8,6 +8,8 @@ use App\Models\Client;
 use App\Models\Company;
 use App\Models\Device;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class ClientService
 {
@@ -27,19 +29,17 @@ class ClientService
             ->get();
     }
 
-    public function storeClients(CompanyCnpjRequest $request)
+    public function storeClients(Request $request)
     {
         $clients = $request->all();
 
-        $company = $this->company->where($clients['cnpj'])->first();
+        $company = $this->company->where('cnpj', $clients['cnpj'])->first();
 
-        DB::transaction(
-            function () use ($company, $clients) {
-                foreach ($clients as $client) {
-                    $company->clients()
-                        ->updateOrCreate(['id' =>  $client['id']], $client);
-                }
-            }
-        );
+        foreach ($clients as $client) {  
+            if (isset($client['code_erp'])) {    
+                  $company->clients()
+                ->updateOrCreate(['code_erp' => $client['code_erp']], $client);  
+            }                
+        }  
     }
 }
