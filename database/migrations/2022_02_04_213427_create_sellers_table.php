@@ -20,7 +20,7 @@ class CreateSellersTable extends Migration
             $table->string('name');
             $table->string('password');
             $table->boolean('inative')->default(false);
-            $table->string('erp_code')->nullable();
+            $table->string('code_erp')->nullable();
             $table->timestamps();
         });
     }

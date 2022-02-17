@@ -4,15 +4,21 @@ namespace App\Services;
 
 use App\Http\Requests\Api\CompanyDeviceRequest;
 use App\Http\Requests\Api\SaleRequest;
+use App\Http\Requests\Api\CompanyCnpjRequest;
+use App\Http\Requests\Api\SaleProcessedRequest;
 use App\Models\Device;
 use App\Models\Sale;
+use App\Models\Company;
 use Illuminate\Support\Facades\DB;
+use App\Enum\Status;
+
 
 class SaleService
 {
     public function __construct(
         private Sale $repository,
-        private Device $device
+        private Device $device,
+        private Company $company
     ) {
     }
 
@@ -22,25 +28,45 @@ class SaleService
 
         return $this->repository
             ->dataSync($device->sync)
-            ->processed()
+            ->status(Status::PROCESSED)
             ->get();
     }
 
-    public function allIntegrated(CompanyDeviceRequest $request)
+    public function allIntegrated(CompanyCnpjRequest $request)
     {
-        $device = $this->device->where('name', $request->get('device'))->first();
+        $data = $request->all();
 
         return $this->repository
-            ->dataSync($device->sync)
-            ->integrated()
+            ->status(Status::INTEGRATED)
             ->get();
     }
+
+    public function processed(SaleProcessedRequest $request, string $uuid)
+    {
+        $data = $request->all();
+
+        $sale = $this->repository->where('uuid', $uuid)->first();
+
+        $sale->status = Status::PROCESSED;
+        $sale->code_erp = $data['code_erp'];
+        $sale->save();
+
+        return $sale;
+    }
+
+    public function fail(CompanyCnpjRequest $request, string $uuid)
+    {
+        $sale = $this->repository->where('uuid', $uuid)->first();
+
+        $sale->status = Status::FAIL;
+        $sale->save();
+
+        return $sale;
+    }    
 
     public function store(SaleRequest $request)
     {
         $data = $request->all();
-
-
 
         return DB::transaction(
             function () use ($data) {

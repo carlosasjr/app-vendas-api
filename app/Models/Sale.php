@@ -7,15 +7,13 @@ use App\Traits\HasCompany;
 use Faker\Provider\ar_EG\Payment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enum\Status;
 
 class Sale extends Model
 {
     use HasFactory;
     use HasCompany;
     use FilterDataLastSync;
-
-    const PROCESSED = 'Processado';
-    const INTEGRATED = 'Integrado';
 
     protected $fillable = [
         'company_id',
@@ -47,13 +45,9 @@ class Sale extends Model
         return $this->hasMany(SalePayment::class);
     }
 
-    public function scopeProcessed($query)
+    public function scopeStatus($query, $status)
     {
-        return  $query->where('status', $this::PROCESSED);
+        return  $query->where('status', $status);
     }
 
-    public function scopeIntegrated($query)
-    {
-        return  $query->where('status', $this::INTEGRATED);
-    }
 }

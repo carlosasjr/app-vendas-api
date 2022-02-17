@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('code_erp')->nullable();
             $table->string('description')->nullable();
             $table->decimal('price', 15, 4)->nullable();
+            $table->decimal('min_price', 15, 4)->nullable();
             $table->decimal('stock', 15, 4)->nullable();
             $table->boolean('inative')->default(false);
             $table->timestamps();

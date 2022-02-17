@@ -18,6 +18,7 @@ class Product extends Model
         'code_erp',
         'description',
         'price',
+        'min_price',
         'stock',
         'inative'
     ];

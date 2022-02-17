@@ -21,13 +21,12 @@ class SaleResource extends JsonResource
             'client'      => new ClientResource($this->client),
             'company_id'  => $this->company_id,
             'seller_id'   => $this->seller_id,
+            'seller'      => new SellerResource($this->seller),  
             'status'      => $this->status,
             'total'       => $this->total,
-
-            'items'       => $this->items,
-            'payments'    => $this->payments,
-
-
+            'created_at'  => $this->created_at,  
+            'items'       => SaleItemResource::collection($this->items),
+            'payments'    => SalePaymentResource::collection($this->payments),
         ];
     }
 }

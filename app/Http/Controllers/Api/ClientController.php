@@ -26,11 +26,17 @@ class ClientController extends Controller
     }
 
 
-    public function storeClients(Request $request)
-    {        
-        $this->repository->storeClients($request);
+    public function store(CompanyCnpjRequest $request)
+    {      
+        try {
+            $this->repository->store($request);
 
-        return response()->json('OK', 200);
+            return response()->json(['status' => 'sucesso'], 200);
+
+        } catch (Exception $e) {
+
+            return response()->json(['status' => 'falha', 'message' => $e->getMessage()]);
+        }  
     }
 
 

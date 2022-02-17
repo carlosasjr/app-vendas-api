@@ -8,8 +8,6 @@ use App\Models\Client;
 use App\Models\Company;
 use App\Models\Device;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Http\Request;
 
 class ClientService
 {
@@ -29,7 +27,7 @@ class ClientService
             ->get();
     }
 
-    public function storeClients(Request $request)
+    public function store(CompanyCnpjRequest $request)
     {
         $clients = $request->all();
 

@@ -22,6 +22,7 @@ class ProductFactory extends Factory
             'uuid'          => Str::uuid(),
             'description'   => $this->faker->word,
             'price'         => 10.50,
+            'min_price'     => 10.50,
             'stock'         => 100000
         ];
     }

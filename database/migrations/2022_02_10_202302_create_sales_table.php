@@ -21,7 +21,7 @@ class CreateSalesTable extends Migration
             $table->decimal('total', 15, 2);
             $table->uuid('uuid');
             $table->string('code_erp')->nullable();
-            $table->enum('status', ['Finalizado', 'Processado']);
+            $table->enum('status', ['Finalizado', 'Processado', 'Falha']);
             $table->timestamps();
         });
     }

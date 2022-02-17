@@ -4,7 +4,7 @@ namespace App\Http\Resources\Api;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SellerResouce extends JsonResource
+class SellerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,6 +20,7 @@ class SellerResouce extends JsonResource
             'company_id' => $this->company_id,
             'name'       => $this->name,
             'password'   => $this->password,
+            'code_erp'   => $this->code_erp,
             'inative'    => $this->inative
         ];
     }

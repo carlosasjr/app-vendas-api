@@ -29,6 +29,26 @@ class Company extends Model
         return $this->hasMany(Client::class);
     }
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function formPayments()
+    {
+        return $this->hasMany(formPayment::class);
+    }
+
+    public function conditionPayments()
+    {
+        return $this->hasMany(ConditionPayment::class);
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
+
     public function scopeCnpj($query, string $cnpj)
     {
         return $query->where('cnpj', $cnpj);

@@ -13,5 +13,5 @@ class Seller extends Model
     use HasCompany;
     use FilterDataLastSync;
 
-    protected $fillable = ['company_id', 'name', 'password', 'inative'];
+    protected $fillable = ['company_id', 'name', 'password', 'code_erp', 'inative'];
 }
