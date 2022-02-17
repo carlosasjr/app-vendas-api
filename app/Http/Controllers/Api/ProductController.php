@@ -21,13 +21,16 @@ class ProductController extends Controller
             $this->repository->store($request);
 
             return response()->json(['status' => 'sucesso'], 200);
-
-        } catch (Exception $e) {
-
-            return response()->json(['status' => 'falha', 'message' => $e->getMessage()]);
-        } 
+        } catch (\Exception $e) {
+            return response()->json(
+                [
+                    'status' => 'falha',
+                    'message' => $e->getMessage()
+                ]
+            );
+        }
     }
-         
+
     public function all(CompanyDeviceRequest $request)
     {
         $products = $this->repository->all($request);

@@ -21,11 +21,15 @@ class FormPaymentController extends Controller
             $this->repository->store($request);
 
             return response()->json(['status' => 'sucesso'], 200);
+        } catch (\Exception $e) {
 
-        } catch (Exception $e) {
-
-            return response()->json(['status' => 'falha', 'message' => $e->getMessage()]);
-        } 
+            return response()->json(
+                [
+                    'status' => 'falha',
+                    'message' => $e->getMessage()
+                ]
+            );
+        }
     }
 
     public function all(CompanyDeviceRequest $request)
