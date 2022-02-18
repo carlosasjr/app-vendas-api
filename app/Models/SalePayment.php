@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,5 +30,10 @@ class SalePayment extends Model
     public function conditionPayment()
     {
         return $this->belongsTo(ConditionPayment::class);
+    }
+
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = Helper::replaceDecimal($value);
     }
 }

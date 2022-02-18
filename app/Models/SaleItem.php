@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,7 @@ class SaleItem extends Model
         'totalItem'
     ];
 
+
     public function sale()
     {
         return $this->belongsTo(Sale::class);
@@ -26,5 +28,15 @@ class SaleItem extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = Helper::replaceDecimal($value);
+    }
+
+    public function setDescAttribute($value)
+    {
+        $this->attributes['desc'] = Helper::replaceDecimal($value);
     }
 }

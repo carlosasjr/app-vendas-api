@@ -16,15 +16,16 @@ class SaleResource extends JsonResource
     {
         return [
             'id'          => $this->id,
+            'code_erp'    => $this->code_erp,
             'uuid'        => $this->uuid,
             'client_id'   => $this->client_id,
             'client'      => new ClientResource($this->client),
             'company_id'  => $this->company_id,
             'seller_id'   => $this->seller_id,
-            'seller'      => new SellerResource($this->seller),  
+            'seller'      => new SellerResource($this->seller),
             'status'      => $this->status,
             'total'       => $this->total,
-            'created_at'  => $this->created_at,  
+            'created_at'  => $this->created_at,
             'items'       => SaleItemResource::collection($this->items),
             'payments'    => SalePaymentResource::collection($this->payments),
         ];
