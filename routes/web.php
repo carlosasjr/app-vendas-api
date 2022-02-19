@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
+
+Route::get('/', [CompanyController::class, 'index'])->name('home');
+Route::get('/companies/create', [CompanyController::class, 'create'])
+    ->name('companies.create');
+
+Route::get('/companies/{id}/edit', [CompanyController::class, 'edit'])
+    ->name('companies.edit');
+
+Route::post('/companies/store', [CompanyController::class, 'store'])
+    ->name('companies.store');
+
+Route::put('/companies/{id}/update', [CompanyController::class, 'update'])
+    ->name('companies.update');
+
+Route::get('/companies/{id}/devices', [CompanyController::class, 'devices'])
+    ->name('companies.devices');
+
+Route::get('/companies/{companyId}/devices/{id}', [CompanyController::class, 'destroyDevice'])
+    ->name('companies.devices.destroy');

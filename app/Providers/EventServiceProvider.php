@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Events\DeviceCreated;
+use App\Events\DeviceDelete;
+use App\Listeners\DecrementLicense;
 use App\Listeners\IncrementLicense;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -23,7 +25,13 @@ class EventServiceProvider extends ServiceProvider
 
         DeviceCreated::class => [
             IncrementLicense::class
-        ]
+        ],
+
+        DeviceDelete::class => [
+            DecrementLicense::class
+        ],
+
+
     ];
 
     /**

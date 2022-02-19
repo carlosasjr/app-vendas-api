@@ -3,12 +3,14 @@
 namespace App\Providers;
 
 use App\Models\Client;
+use App\Models\Company;
 use App\Models\ConditionPayment;
 use App\Models\Device;
 use App\Models\FormPayment;
 use App\Models\Product;
 use App\Models\Seller;
 use App\Observers\ClientObserver;
+use App\Observers\CompanyObserver;
 use App\Observers\ConditionPaymentObserver;
 use App\Observers\DeviceObserver;
 use App\Observers\FormPaymentObserver;
@@ -38,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultstringLength(191);
 
+        Company::observe(CompanyObserver::class);
         Device::observe(DeviceObserver::class);
         Client::observe(ClientObserver::class);
         Seller::observe(SellerObserver::class);
