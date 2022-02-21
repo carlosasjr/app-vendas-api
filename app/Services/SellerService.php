@@ -16,19 +16,19 @@ class SellerService
         private Company $company
     ) {
     }
-    
+
 
     public function store(CompanyCnpjRequest $request)
     {
-        $sellers = $request->all();
+        $sellers = $request->validate();
 
         $company = $this->company->where('cnpj', $sellers['cnpj'])->first();
-        foreach ($sellers as $seller) {  
-            if (isset($seller['code_erp'])) {    
-                  $company->sellers()
-                ->updateOrCreate(['code_erp' => $seller['code_erp']], $seller);  
-            }                
-        }  
+        foreach ($sellers as $seller) {
+            if (isset($seller['code_erp'])) {
+                $company->sellers()
+                    ->updateOrCreate(['code_erp' => $seller['code_erp']], $seller);
+            }
+        }
     }
 
     public function all(CompanyDeviceRequest $request)
