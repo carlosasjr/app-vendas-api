@@ -29,15 +29,15 @@ class ClientService
 
     public function store(CompanyCnpjRequest $request)
     {
-        $clients = $request->all();
+        $clients = $request->validate();
 
         $company = $this->company->where('cnpj', $clients['cnpj'])->first();
 
-        foreach ($clients as $client) {  
-            if (isset($client['code_erp'])) {    
-                  $company->clients()
-                ->updateOrCreate(['code_erp' => $client['code_erp']], $client);  
-            }                
-        }  
+        foreach ($clients as $client) {
+            if (isset($client['code_erp'])) {
+                $company->clients()
+                    ->updateOrCreate(['code_erp' => $client['code_erp']], $client);
+            }
+        }
     }
 }

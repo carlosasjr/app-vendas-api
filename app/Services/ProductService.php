@@ -18,18 +18,18 @@ class ProductService
     ) {
     }
 
-    
+
     public function store(CompanyCnpjRequest $request)
     {
-        $products = $request->all();
+        $products = $request->validate();
 
         $company = $this->company->where('cnpj', $products['cnpj'])->first();
 
-        foreach ($products as $product) {  
-            if (isset($product['code_erp'])) {    
-                  ProductUpdateCreate::dispatch($company, $product);  
-            }                
-        }  
+        foreach ($products as $product) {
+            if (isset($product['code_erp'])) {
+                ProductUpdateCreate::dispatch($company, $product);
+            }
+        }
     }
 
     public function all(CompanyDeviceRequest $request)

@@ -19,16 +19,16 @@ class FormPaymentService
 
     public function store(CompanyCnpjRequest $request)
     {
-        $formsPayments = $request->all();
+        $formsPayments = $request->validate();
 
         $company = $this->company->where('cnpj', $formsPayments['cnpj'])->first();
 
-        foreach ($formsPayments as $formPayment) {  
-            if (isset($formPayment['code_erp'])) {    
-                  $company->formPayments()
-                ->updateOrCreate(['code_erp' => $formPayment['code_erp']], $formPayment);  
-            }                
-        }  
+        foreach ($formsPayments as $formPayment) {
+            if (isset($formPayment['code_erp'])) {
+                $company->formPayments()
+                    ->updateOrCreate(['code_erp' => $formPayment['code_erp']], $formPayment);
+            }
+        }
     }
 
     public function all(CompanyDeviceRequest $request)

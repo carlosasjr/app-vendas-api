@@ -62,11 +62,11 @@ class SaleService
         $sale->save();
 
         return $sale;
-    }    
+    }
 
     public function store(SaleRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validate();
 
         return DB::transaction(
             function () use ($data) {

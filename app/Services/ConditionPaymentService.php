@@ -16,19 +16,19 @@ class ConditionPaymentService
         private Company $company
     ) {
     }
-    
+
     public function store(CompanyCnpjRequest $request)
     {
-        $conditionPayments = $request->all();
+        $conditionPayments = $request->validate();
 
         $company = $this->company->where('cnpj', $conditionPayments['cnpj'])->first();
 
-        foreach ($conditionPayments as $conditionPayment) {  
-            if (isset($conditionPayment['code_erp'])) {    
-                  $company->conditionPayments()
-                ->updateOrCreate(['code_erp' => $conditionPayment['code_erp']], $conditionPayment);  
-            }                
-        }  
+        foreach ($conditionPayments as $conditionPayment) {
+            if (isset($conditionPayment['code_erp'])) {
+                $company->conditionPayments()
+                    ->updateOrCreate(['code_erp' => $conditionPayment['code_erp']], $conditionPayment);
+            }
+        }
     }
 
     public function all(CompanyDeviceRequest $request)
