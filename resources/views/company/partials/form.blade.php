@@ -51,7 +51,8 @@
                                 <input id="block"
                                 name="block"
                                 type="checkbox"
-                                {{  $company->block == 1 ? 'checked' : '' }}>
+                                {{  isset($company->block) ?
+                                           $company->block == 1 ? 'checked' : '' : old('block') }}>
                                 <label for="block">Bloqueada?</label>
                             </div>
                         </div>

@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use App\Http\Requests\Api\CompanyDeviceRequest;
-use App\Http\Requests\Api\CompanyCnpjRequest;
 use App\Models\Device;
 use App\Models\Seller;
 use App\Models\Company;
+use App\Http\Requests\Api\CompanyCnpjRequest;
+use App\Http\Requests\Api\CompanyDeviceRequest;
 
 class SellerService
 {
