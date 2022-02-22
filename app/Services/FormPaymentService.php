@@ -19,7 +19,7 @@ class FormPaymentService
 
     public function store(CompanyCnpjRequest $request)
     {
-        $formsPayments = $request->validate();
+        $formsPayments = $request->all();
 
         $company = $this->company->where('cnpj', $formsPayments['cnpj'])->first();
 

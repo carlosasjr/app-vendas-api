@@ -21,7 +21,7 @@ class ProductService
 
     public function store(CompanyCnpjRequest $request)
     {
-        $products = $request->validate();
+        $products = $request->all();
 
         $company = $this->company->where('cnpj', $products['cnpj'])->first();
 
