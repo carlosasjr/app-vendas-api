@@ -34,9 +34,4 @@ class SaleItem extends Model
     {
         $this->attributes['price'] = Helper::replaceDecimal($value);
     }
-
-    public function setDescAttribute($value)
-    {
-        $this->attributes['desc'] = Helper::replaceDecimal($value);
-    }
 }

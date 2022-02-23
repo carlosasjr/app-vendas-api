@@ -29,7 +29,7 @@ class ClientService
 
     public function store(CompanyCnpjRequest $request)
     {
-        $clients = $request->all();
+        $clients = $request->validated();
 
         $company = $this->company->where('cnpj', $clients['cnpj'])->first();
 

@@ -19,7 +19,7 @@ class DeviceService
     {
         return DB::transaction(
             function () use ($request) {
-                return $this->repository->create($request->all());
+                return $this->repository->create($request->validated());
             }
         );
     }

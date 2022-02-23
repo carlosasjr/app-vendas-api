@@ -37,7 +37,7 @@ class CompanyService
 
     public function update(UpdateCreateCompanyRequest $request, $id)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         $data['block'] = isset($data['block']) ? true : false;
 

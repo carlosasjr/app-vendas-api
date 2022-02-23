@@ -19,7 +19,7 @@ class ConditionPaymentService
 
     public function store(CompanyCnpjRequest $request)
     {
-        $conditionPayments = $request->all();
+        $conditionPayments = $request->validated();
 
         $company = $this->company->where('cnpj', $conditionPayments['cnpj'])->first();
 

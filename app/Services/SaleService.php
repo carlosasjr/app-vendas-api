@@ -66,7 +66,7 @@ class SaleService
 
     public function store(SaleRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         return DB::transaction(
             function () use ($data) {
