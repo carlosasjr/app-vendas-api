@@ -12,22 +12,22 @@ services:
         working_dir: /var/www/
         volumes:
             - ./:/var/www
-        depends_on: 
+        depends_on:
             - redis
-        networks: 
+        networks:
             - mais-vendas
-    
+
     # nginx
     nginx:
         container_name: maisvendas-nginx
         image: nginx:alpine
         restart: unless-stopped
-        ports: 
+        ports:
             - "8000:80"
-        volumes: 
+        volumes:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
-        networks: 
+        networks:
             - mais-vendas
 
     # db mysql
@@ -35,16 +35,29 @@ services:
         container_name: maisvendas-mysql
         image: mysql:5.7.22
         restart: unless-stopped
-        environment: 
+        environment:
             MYSQL_DATABASE: ${DB_DATABASE}
             MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
             MYSQL_PASSWORD: ${DB_PASSWORD}
             MYSQL_USER: ${DB_USERNAME}
-        volumes: 
+        volumes:
             - ./.docker/mysql/dbdata:/var/lib/mysql
-        ports: 
+        ports:
             - "3388:3306"
-        networks: 
+        networks:
+            - mais-vendas
+
+    phpmyadmin:
+        container_name: maisvendas-phpmyadmin
+        image: phpmyadmin/phpmyadmin:latest
+        restart: always
+        ports:
+            - 8081:80
+        links:
+            - mysql
+        environment:
+            - PMA_ARBITRARY=1
+        networks:
             - mais-vendas
 
     # queue
@@ -53,21 +66,21 @@ services:
         image: especializati/laravel9-app
         restart: unless-stopped
         command: "php artisan queue:work"
-        volumes: 
+        volumes:
             - ./:/var/www
-        depends_on: 
+        depends_on:
             - redis
             - app
-        networks: 
+        networks:
             - mais-vendas
 
     # redis
     redis:
         container_name: maisvendas-redis
         image: redis:latest
-        networks: 
+        networks:
             - mais-vendas
 
-networks: 
+networks:
     mais-vendas:
         driver: bridge
