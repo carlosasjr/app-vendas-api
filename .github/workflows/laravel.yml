@@ -66,3 +66,7 @@ jobs:
             echo $USER_PASS | sudo -S docker-compose up -d
             echo $USER_PASS | sudo -S docker-compose exec -T app composer install --no-dev
             echo $USER_PASS | sudo -S docker-compose exec -T app php artisan migrate --force
+            echo $USER_PASS | sudo -S docker-compose exec -T app php artisan storage:link
+            echo $USER_PASS | sudo -S docker-compose exec -T app php artisan view:cache
+            echo $USER_PASS | sudo -S docker-compose exec -T app php artisan config:cache
+            echo $USER_PASS | sudo -S docker-compose exec -T app php artisan optimize
