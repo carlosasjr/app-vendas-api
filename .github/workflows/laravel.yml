@@ -64,7 +64,7 @@ jobs:
           script: |
             cd api/
             echo $USER_PASS | sudo -S docker-compose up -d
-            echo $USER_PASS | sudo -S docker-compose exec -T app composer install --no-dev
+            echo $USER_PASS | sudo -S docker-compose exec -T app composer install --optimize-autoload --no-dev
             echo $USER_PASS | sudo -S docker-compose exec -T app php artisan migrate --force
             echo $USER_PASS | sudo -S docker-compose exec -T app php artisan storage:link
             echo $USER_PASS | sudo -S docker-compose exec -T app php artisan view:cache

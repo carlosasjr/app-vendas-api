@@ -78,6 +78,8 @@ services:
     redis:
         container_name: maisvendas-redis
         image: redis:latest
+        ports:
+            - 6379:6379
         networks:
             - mais-vendas
 
