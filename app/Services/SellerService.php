@@ -20,7 +20,7 @@ class SellerService
 
     public function store(CompanyCnpjRequest $request)
     {
-        $sellers = $request->validated();
+        $sellers = $request->all();
 
         $company = $this->company->where('cnpj', $sellers['cnpj'])->first();
         foreach ($sellers as $seller) {
