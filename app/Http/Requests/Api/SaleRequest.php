@@ -37,6 +37,7 @@ class SaleRequest extends FormRequest
             'items.*.price'      => 'required',
             'items.*.descReal'   => 'required',
             'items.*.totalItem'  => 'required',
+            'items.*.observation' => 'nullable|min:3',
 
             'payments'                        => 'required',
             'payments.*.form_payment_id'      => 'required|exists:form_payments,id',

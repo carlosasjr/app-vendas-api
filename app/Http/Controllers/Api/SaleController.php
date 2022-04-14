@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CompanyDeviceRequest;
 use App\Http\Requests\Api\CompanyCnpjRequest;
+use App\Http\Requests\Api\SaleCompanySellerRequest;
 use App\Http\Requests\Api\SaleRequest;
 use App\Http\Resources\Api\SaleResource;
 use App\Http\Requests\Api\SaleProcessedRequest;
@@ -37,6 +38,16 @@ class SaleController extends Controller
 
         return SaleResource::collection($sales);
     }
+
+    public function allSalesBySeller(SaleCompanySellerRequest $request)
+    {
+        $sales = $this->repository->allSalesBySeller($request);
+
+        return SaleResource::collection($sales);
+    }
+
+
+
 
     public function processed(SaleProcessedRequest $request, string $uuid)
     {

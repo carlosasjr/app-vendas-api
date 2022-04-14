@@ -11,7 +11,7 @@ use App\Models\Sale;
 use App\Models\Company;
 use Illuminate\Support\Facades\DB;
 use App\Enum\Status;
-
+use App\Http\Requests\Api\SaleCompanySellerRequest;
 
 class SaleService
 {
@@ -41,6 +41,13 @@ class SaleService
             ->get();
     }
 
+    public function allSalesBySeller(SaleCompanySellerRequest $request)
+    {
+        return $this->repository
+            ->bySeller($request->get('seller_id'))
+            ->get();
+    }
+
     public function processed(SaleProcessedRequest $request, string $uuid)
     {
         $data = $request->all();
@@ -66,7 +73,7 @@ class SaleService
 
     public function store(SaleRequest $request)
     {
-        $data = $request->validated();
+        $data = $request->all();
 
         return DB::transaction(
             function () use ($data) {

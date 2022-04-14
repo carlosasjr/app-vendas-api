@@ -16,10 +16,10 @@ class SalePaymentResource extends JsonResource
     {
         return [
             'form_payment_id'       => $this->form_payment_id,
-            'form_payment'          => new FormPaymentResource($this->formPayment),
+            'formPayment'           => new FormPaymentResource($this->formPayment),
             'condition_payment_id'  => $this->condition_payment_id,
-            'condition'             => new ConditionPaymentResource($this->conditionPayment),
-            'price'=> $this->price,
+            'conditionPayment'      => new ConditionPaymentResource($this->conditionPayment),
+            'price'                 => $this->price,
         ];
     }
 }

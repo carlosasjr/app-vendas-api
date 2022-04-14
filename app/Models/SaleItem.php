@@ -16,7 +16,8 @@ class SaleItem extends Model
         'qtd',
         'price',
         'desc',
-        'totalItem'
+        'totalItem',
+        'observation'
     ];
 
 

@@ -50,4 +50,9 @@ class Sale extends Model
         return  $query->where('status', $status);
     }
 
+
+    public function scopeBySeller($query, $id)
+    {
+        return $query->where('seller_id', $id);
+    }
 }

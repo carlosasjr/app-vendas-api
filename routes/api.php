@@ -35,6 +35,7 @@ Route::get('condition-payments/all', [ConditionPaymentController::class, 'all'])
 Route::post('condition-payments/store', [ConditionPaymentController::class, 'store']);
 
 Route::post('sales', [SaleController::class, 'store']);
+Route::get('sales/all-seller', [SaleController::class, 'allSalesBySeller']);
 Route::get('sales/all-processed', [SaleController::class, 'allProcessed']);
 Route::get('sales/all-integrated', [SaleController::class, 'allIntegrated']);
 Route::put('sales/{uuid}/processed', [SaleController::class, 'processed']);

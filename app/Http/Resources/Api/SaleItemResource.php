@@ -20,7 +20,9 @@ class SaleItemResource extends JsonResource
             'qtd'           => $this->qtd,
             'price'         => $this->price,
             'desc'          => $this->desc,
-            'totalItem'     => $this->totalItem,
+            'descReal'      => $this->desc,
+            'totalItem'     => (float) $this->totalItem,
+            'observation'   => $this->observation
         ];
     }
 }
