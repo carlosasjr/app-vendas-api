@@ -35,4 +35,9 @@ class SaleItem extends Model
     {
         $this->attributes['price'] = Helper::replaceDecimal($value);
     }
+
+    public function setQtdAttribute($value)
+    {
+        $this->attributes['qtd'] = Helper::replaceDecimal($value);
+    }
 }
